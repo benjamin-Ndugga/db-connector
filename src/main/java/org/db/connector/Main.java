@@ -1,6 +1,7 @@
 package org.db.connector;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -20,6 +21,11 @@ public class Main {
         Connection conn = null;
         try {
             conn = OracleDBConnector.connect();
+            ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM DUAL");
+
+            while (rs.next()) {
+                System.out.println(rs.getString(1));
+            }
 
         } catch (SQLException ex) {
             ex.printStackTrace(System.err);
